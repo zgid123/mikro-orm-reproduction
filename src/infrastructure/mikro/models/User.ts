@@ -1,7 +1,7 @@
 import { defineEntity, type InferEntity } from '@mikro-orm/core';
 
 import { AllowedToken } from './AllowedToken';
-import { baseProperties } from './Base.js';
+import { baseProperties } from './Base';
 
 export const roles = {
   user: 'user',
@@ -30,4 +30,4 @@ export const User = defineEntity({
   },
 });
 
-export interface IUser extends InferEntity<typeof User> {}
+export interface IUser extends InferEntity<typeof User> { }

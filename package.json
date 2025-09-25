@@ -3,22 +3,43 @@
   "private": true,
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "start": "jest",
-    "test": "jest"
+    "test": "jest",
+    "migrate:create": "dotenv -e .env -- mikro-orm migration:create",
+    "seed:create": "dotenv -e .env -- mikro-orm seeder:create",
+    "db:migrate": "dotenv -e .env -- mikro-orm migration:up",
+    "db:rollback": "dotenv -e .env -- mikro-orm migration:down",
+    "db:seed": "dotenv -e .env -- mikro-orm seeder:run"
   },
   "author": "Martin Adamek",
   "license": "MIT",
   "dependencies": {
     "@mikro-orm/core": "7.0.0-dev.27",
-    "@mikro-orm/sqlite": "7.0.0-dev.27",
+    "@mikro-orm/entity-generator": "7.0.0-dev.27",
+    "@mikro-orm/migrations": "7.0.0-dev.27",
+    "@mikro-orm/postgresql": "7.0.0-dev.27",
+    "@mikro-orm/seeder": "7.0.0-dev.27",
+    "@swc-node/register": "^1.11.1",
+    "@types/pluralize": "^0.0.33",
+    "dotenv": "^17.2.2",
+    "dotenv-cli": "^10.0.0",
+    "pluralize": "^8.0.0",
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
+    "@mikro-orm/cli": "7.0.0-dev.27",
     "@types/jest": "^29.5.8",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.1",
     "typescript": "^5.2.2"
+  },
+  "mikro-orm": {
+    "configPaths": [
+      "./src/mikro-orm.config.ts",
+      "./dist/mikro-orm.config.js"
+    ]
   }
 }
